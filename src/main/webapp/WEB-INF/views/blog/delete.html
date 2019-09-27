@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/layout :: head"></head>
+<body>
+<h3>Delete blog</h3>
+<div th:if="${success}">
+    <p th:text="${success}"></p>
+</div>
+<p>
+    <a th:href="@{/blogs}">
+        Back to blog list
+    </a>
+</p>
+<p>
+    Are you sure?
+</p>
+<div id="form">
+    <form action="#" th:action="@{/blog/delete}" th:object="${blog}"
+          method="POST" novalidate="novalidate" enctype="multipart/form-data">
+        <div>
+            <label>ID</label>
+            <input type="text" th:field="*{id}"/>
+        </div>
+        <div>
+            <label>Title</label>
+            <input type="text" th:field="*{title}"/>
+        </div>
+        <div>
+            <label>Content</label>
+            <input type="text" th:field="*{content}"/>
+        </div>
+
+        <div>
+            <label>Picture</label>
+            <img th:src="@{'/i/' + ${blog.getPicture()}}">
+
+        </div>
+        <input type="submit" value="Delete"/>
+    </form>
+</div>
+<footer th:replace="blog/layout :: footer"></footer>
+</body>
+</html>

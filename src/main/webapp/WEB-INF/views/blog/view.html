@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/layout :: head"></head>
+<body>
+<h3>View Detail blog</h3>
+
+<p>
+    <a th:href="@{/blogs}">
+        Back to blog list
+    </a>
+</p>
+
+<div id="form">
+    <form action="#" th:action="@{blog/{id}/view}" th:object="${blog}"
+          novalidate="novalidate" enctype="multipart/form-data">
+        <div>
+            <label>ID</label>
+            <input type="text" th:field="*{id}"/>
+        </div>
+        <div>
+            <label>Title</label>
+            <input type="text" th:field="*{title}"/>
+        </div>
+        <div>
+            <label>Content</label>
+            <input type="text" th:field="*{content}"/>
+        </div>
+
+        <div>
+            <label>Picture</label>
+            <img th:src="@{'/i/' + ${blog.getPicture()}}">
+
+        </div>
+
+    </form>
+</div>
+<footer th:replace="blog/layout :: footer"></footer>
+</body>
+</html>

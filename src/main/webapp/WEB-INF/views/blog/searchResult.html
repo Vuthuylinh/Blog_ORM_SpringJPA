@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/layout::head">
+    <!--    <meta charset="utf-8" />-->
+    <!--    <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+
+    <title>Spring Blogs</title>
+</head>
+<body>
+<h3>Blogs Search Result</h3>
+<p>
+    <a th:href="@{/blogs}">
+        Back to Blogs list
+    </a>
+</p>
+<p>
+    <a th:href="@{/search-blog}"></a>
+</p>
+<!--<div class="notify">-->
+<!--    <div th:if="${success}">-->
+<!--        <span th:text="${success}"></span>-->
+<!--    </div>-->
+<!--</div>-->
+<table id = "blogs">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Picture</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row, rowStat : ${blogSearchList}">
+        <td th:text="${row.getId()}"></td>
+        <td th:text="${row.getTitle()}"></td>
+        <td th:text="${row.getContent()}"></td>
+        <td><img width="150px" height="150px" th:src="@{'/i/' + ${row.getPicture()}}"/></td>
+        <td><a th:href="@{/blog/{id}/edit(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/blog/{id}/delete(id=${row.getId()})}">delete</a></td>
+        <td><a th:href="@{/blog/{id}/view(id=${row.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="blog/layout :: footer"></footer>
+</body>
+</html>
